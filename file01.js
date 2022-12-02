@@ -7,6 +7,4 @@ console.log(wrapped);
      "*******\n*socks*\n*******"
    ] */
 
-function wrapping(gifts) {
-    return gifts.map(element => `${'*'.repeat(element.length+2)}\n*${element}*\n${'*'.repeat(element.length+2)}`)
-}
+wrapping = (gifts) => gifts.map(element => `${'*'.repeat(element.length+2)}\n*${element}*\n${'*'.repeat(element.length+2)}`)
