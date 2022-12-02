@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "file01":"node file01.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
