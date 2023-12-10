@@ -38,6 +38,10 @@
 // Nota: Ten en cuenta que, en los tests, la primera línea se ve empujada por el caracter ".
 
 function drawGift(size, symbol) {
-    // Code here
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+    }
     return '#\n'
 }
+
+console.log(drawGift(4, '+'))
