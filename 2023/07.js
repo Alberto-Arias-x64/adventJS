@@ -70,23 +70,18 @@
 function drawGift(size, symbol) {
     const sample = size + (size - 1)
     let response = ""
-    let start = size - 1
-    let finish = sample
+    let carry = 0
+    let reverse = false
     for (let index = 0; index < sample; index++) {
-        for (let index_2 = 0; index_2 < sample; index_2++) {
-            if (start !== 0) {
-                if (index_2 < start) response += " "
-                else response += "#"
-            } else {
-                if(index_2 >= finish) response += " "
-                else response += "#"
-            }
+        if (carry === 0) response += "#".repeat(size + carry) + "\n"
+        else {
+            response += "#" + symbol.repeat(size - 2 + carry) + "#\n"
         }
-        if (start !== 0) start--
-        else finish --
-        response += "\n"
+        if(reverse) carry --
+        else carry ++
+        if (carry === size - 1) reverse = true
     }
     return response
 }
 
-console.log(drawGift(4, '+'))
+console.log(drawGift(6, '+'))
