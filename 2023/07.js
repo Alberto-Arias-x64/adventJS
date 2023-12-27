@@ -5,7 +5,7 @@
 // en este jardín secreto de la existencia, crece la planta como crece nuestra amistad, 
 // el cual es un regalo que valoro profundamente.
 
-// Nadie nos advirtió que extrañar es él consto de los buenos momentos.
+// Nadie nos advirtió que extrañar es él costo de los buenos momentos.
 // Dejar ir no significa olvidar, dejar ir implica permitir que los recuerdos tomen otra forma,
 // que no sean una carga, sino un impulso que nos eleve, pues el crecer viene acompañado de
 // despedidas, esa soledad es el precio a pagar por la vida de nuestros sueños.
