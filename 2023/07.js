@@ -75,7 +75,8 @@ function drawGift(size, symbol) {
     for (let index = 0; index < sample; index++) {
         if (carry === 0) response += " ".repeat(sample - carry - size) + "#".repeat(size + carry) + "\n"
         else {
-            response += " ".repeat(sample - carry - size) + "#" + symbol.repeat(size - 2) + "#" + symbol.repeat(carry - 1) + "#\n"
+            if(reverse) response += "#" + symbol.repeat(size - 2) + "#" + symbol.repeat(carry - 1) + "#" + " ".repeat(sample - carry - size) + "\n"
+            else response += " ".repeat(sample - carry - size) + "#" + symbol.repeat(size - 2) + "#" + symbol.repeat(carry - 1) + "#\n"
         }
         if(reverse) carry --
         else carry ++
