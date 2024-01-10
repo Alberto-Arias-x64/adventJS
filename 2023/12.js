@@ -43,10 +43,12 @@
 function checkIsValidCopy(original, copy) {
   function validate(letter_1 = "", letter_2 = "") {
     if (letter_1 === letter_2) return true
+    else if (letter_1.toLowerCase() === letter_2) return true
+    else if (/[A-Za-z]/.test(letter_1) && /[a-z#\+:\. ]/.test(letter_2)) return true
     return false
   }
   if (original.length !== copy.length) return false
-  if (original.length === copy.length) return true
+  if (original === copy) return true
   for (let index = 0; index < original.length; index++) {
     if (!validate(original[index], copy[index])) return false
   }
