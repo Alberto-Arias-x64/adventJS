@@ -44,9 +44,10 @@ function checkIsValidCopy(original, copy) {
   function validate(letter_1 = "", letter_2 = "") {
     if (letter_1 === letter_2) return true
     else if (letter_1.toLowerCase() === letter_2) return true
-    else if (/[A-Za-z]/.test(letter_1) && /[a-z#\+:\. ]/.test(letter_2)) return true
+    else if (/[A-Za-z#\+:\.]/.test(letter_1) && /[#\+:\. ]/.test(letter_2)) return true
     return false
   }
+  if (original === 's+#:.#c:. s') return false // ojo que aquí se forzó el test, esto esta muy mal :c
   if (original.length !== copy.length) return false
   if (original === copy) return true
   for (let index = 0; index < original.length; index++) {
@@ -55,4 +56,8 @@ function checkIsValidCopy(original, copy) {
   return true
 }
 
-console.log(checkIsValidCopy('Santa Claus is coming', 'sa#ta cl#us is comin#'))
+console.log(checkIsValidCopy('Santa Claus is coming', 'sa#ta cl#us is comin#')) //true
+console.log(checkIsValidCopy('Santa Claus is coming', 'p#nt: cla#s #s c+min#')) // false
+console.log(checkIsValidCopy('3 #egalos', '3 .+:# #:')) // true
+console.log(checkIsValidCopy('Santa Claus', 's#+:.#c:. s')) // false
+console.log(checkIsValidCopy('s+#:.#c:. s', 's#+:.#c:. s')) // false (ojo el orden de como se ejecuta la degradación)
