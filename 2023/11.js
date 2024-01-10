@@ -18,6 +18,29 @@
 // getIndexsForPalindrome('caababa') // null
 // Si se puede formar el palíndromo con diferentes intercambios, siempre se debe devolver el primero que se encuentre.
 
-function getIndexsForPalindrome(word) {
-    return [0, 0]
+function getIndexsForPalindrome(word = '') {
+  const response = null
+  function verifyPalindrome(word = '') {
+    let acc = 0
+    while (acc < word.length / 2) {
+      if (word[acc] !== word[word.length - acc - 1]) return false
+      acc++
+    }
+    return true
+  }
+  function intercambiarPosiciones(string, pos1, pos2) {
+    let array = string.split('');
+    [array[pos1], array[pos2]] = [array[pos2], array[pos1]];
+    let nuevoString = array.join('');
+    return nuevoString;
+  }
+  if (verifyPalindrome(word)) return []
+  for (let index = 0; index < word.length; index++) {
+    for (let index_2 = index; index_2 < word.length; index_2++) {
+      if (verifyPalindrome(intercambiarPosiciones(word, index, index_2))) return [index, index_2]
+    }
+  }
+  return response
 }
+
+console.log(getIndexsForPalindrome("aaababa"))
