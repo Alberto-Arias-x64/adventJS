@@ -22,12 +22,24 @@
 //   11b: 11 regalos tipo 'b' se empaquetarían en 1 caja y sobraría 1 regalo, resultando en 1 caja suelta {b} y una bolsa con 1 regalo (b)
 
 function organizeGifts(gifts = "") {
-  const GIFTS = []
-  while (/(\d*\w)/g.test(gifts)){
-    GIFTS.push(/(\d*\w)/g.exec(gifts)[0])
-    gifts = gifts.replace(/(\d*\w)/, '')
-  }
-  return GIFTS
+    let sortedGifts = ''
+    const GIFTS = []
+    while (/(\d*[a-zA-Z]+)/g.test(gifts)) {
+        const GIFT = /(\d*[a-zA-Z]+)/g.exec(gifts)[0]
+        const QUANTITY = /(\d*)/g.exec(GIFT)[0]
+        const LETTER = /([a-zA-Z]+)/g.exec(GIFT)[0]
+        GIFTS.push({ QUANTITY, LETTER })
+        gifts = gifts.replace(/(\d*[a-zA-Z]+)/, '')
+    }
+    GIFTS.forEach(({ QUANTITY, LETTER }) => {
+        const PALE = Math.floor(QUANTITY / 50)
+        QUANTITY = QUANTITY - PALE * 50
+        const BOX = Math.floor(QUANTITY / 10)
+        const RES = QUANTITY - BOX * 10
+        const response = `[${LETTER}]`.repeat(PALE) + `{${LETTER}}`.repeat(BOX) + "(" + `${LETTER}`.repeat(RES) + ")"
+        sortedGifts = sortedGifts.concat(response.replace("()",''))
+    })
+    return sortedGifts
 }
 
 const result1 = organizeGifts(`76a11b`)
