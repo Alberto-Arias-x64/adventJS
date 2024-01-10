@@ -21,7 +21,14 @@
 
 //   11b: 11 regalos tipo 'b' se empaquetarían en 1 caja y sobraría 1 regalo, resultando en 1 caja suelta {b} y una bolsa con 1 regalo (b)
 
-function organizeGifts(gifts) {
-  // Code here
-  return ''
+function organizeGifts(gifts = "") {
+  const GIFTS = []
+  while (/(\d*\w)/g.test(gifts)){
+    GIFTS.push(/(\d*\w)/g.exec(gifts)[0])
+    gifts = gifts.replace(/(\d*\w)/, '')
+  }
+  return GIFTS
 }
+
+const result1 = organizeGifts(`76a11b`)
+console.log(result1)
