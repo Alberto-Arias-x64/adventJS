@@ -30,5 +30,15 @@
 // comprueba que no haya espacios en blanco que sobren, especialmente a la derecha de cada línea.
 
 function createChristmasTree(ornaments, height) {
-  return '|'
+  let arrayResponse = []
+  let acc = 1
+  for (let index = 0; index < height; index++) {
+    const res = " ".repeat(height - index - 1) + `x`.repeat(acc) + '\n'
+    acc = acc + 2
+    arrayResponse.push(res)
+  }
+  arrayResponse.push(" ".repeat(height - 1) + '|')
+  return arrayResponse.join('')
 }
+
+console.log(createChristmasTree("xo", 4))
