@@ -33,13 +33,19 @@ function calculateTime(deliveries = []) {
   }
   if (seconds >= 60) {
     minutes = minutes + Math.floor(seconds / 60)
-    seconds = Math.floor(seconds % 60)
+    seconds = Math.floor(seconds % 60).toString()
   }
   if (minutes >= 60) {
     hours = hours + Math.floor(minutes / 60)
-    minutes = Math.floor(minutes % 60)
+    hours = hours.toString()
+    minutes = Math.floor(minutes % 60).toString()
   }
-  return `${hours}:${minutes}:${seconds}`
+  if (seconds.length === 1) seconds = `0${seconds}`
+  if (minutes.length === 1) minutes = `0${minutes}`
+  if (hours.length === 1) hours = `0${hours}`
+  const response = new Date(new Date('2000-01-01T07:00:00') - new Date(`2000-01-01T${hours}:${minutes}:${seconds}`))
+  const total = `${hours > 6 ? '' : '-'}${response.getUTCHours()}:${response.getUTCMinutes()}:${response.getUTCSeconds()}`
+  return total
 }
 
 console.log(calculateTime([
