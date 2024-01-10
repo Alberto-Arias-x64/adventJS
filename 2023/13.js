@@ -23,10 +23,28 @@
 // ]) // '-05:29:00'
 
 function calculateTime(deliveries = []) {
-  function sumDates(date_1 = '', date_2 = '') {
-    const DATE1 = date_1.split(':')
-    const DATE2 = date_2.split(':')
+  let hours = 0
+  let minutes = 0
+  let seconds = 0
+  for (let index = 0; index < deliveries.length; index++) {
+    hours = hours + Number(deliveries[index].split(':')[0])
+    minutes = minutes + Number(deliveries[index].split(':')[1])
+    seconds = seconds + Number(deliveries[index].split(':')[2])
   }
-  
-  return '00:00:00'
+  if (seconds >= 60) {
+    minutes = minutes + Math.floor(seconds / 60)
+    seconds = Math.floor(seconds % 60)
+  }
+  if (minutes >= 60) {
+    hours = hours + Math.floor(minutes / 60)
+    minutes = Math.floor(minutes % 60)
+  }
+  return `${hours}:${minutes}:${seconds}`
 }
+
+console.log(calculateTime([
+  '00:45:00',
+  '00:45:00',
+  '00:00:30',
+  '00:00:30'
+]))
