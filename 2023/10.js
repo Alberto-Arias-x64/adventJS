@@ -32,12 +32,27 @@
 function createChristmasTree(ornaments, height) {
   let arrayResponse = []
   let acc = 1
+  let counter = 0
+
+  function returnThree(acc) {
+    let response = ''
+    for (let index = 0; index < acc; index++) {
+      if (index % 2 !== 0) response = response.concat(" ")
+      else {
+        response = response.concat(ornaments[counter])
+        counter++
+        if (counter >= ornaments.length) counter = 0
+      }
+    }
+    return response
+  }
+
   for (let index = 0; index < height; index++) {
-    const res = " ".repeat(height - index - 1) + `x`.repeat(acc) + '\n'
+    const res = " ".repeat(height - index - 1) + returnThree(acc) + '\n'
     acc = acc + 2
     arrayResponse.push(res)
   }
-  arrayResponse.push(" ".repeat(height - 1) + '|')
+  arrayResponse.push(" ".repeat(height - 1) + '|' + '\n')
   return arrayResponse.join('')
 }
 
