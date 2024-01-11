@@ -23,34 +23,24 @@
 // ]) // '-05:29:00'
 
 function calculateTime(deliveries = []) {
-  let hours = 0
-  let minutes = 0
-  let seconds = 0
-  for (let index = 0; index < deliveries.length; index++) {
-    hours = hours + Number(deliveries[index].split(':')[0])
-    minutes = minutes + Number(deliveries[index].split(':')[1])
-    seconds = seconds + Number(deliveries[index].split(':')[2])
-  }
-  if (seconds >= 60) {
-    minutes = minutes + Math.floor(seconds / 60)
-    seconds = Math.floor(seconds % 60).toString()
-  }
-  if (minutes >= 60) {
-    hours = hours + Math.floor(minutes / 60)
-    hours = hours.toString()
+    let hours = 0
+    let minutes = 0
+    let seconds = 0
+    let accSeconds = 0
+    let resTime = 7 * 3600
+    for (let index = 0; index < deliveries.length; index++) {
+        hours = hours + Number(deliveries[index].split(':')[0])
+        minutes = minutes + Number(deliveries[index].split(':')[1])
+        seconds = seconds + Number(deliveries[index].split(':')[2])
+    }
+    accSeconds = hours * 3600 + minutes * 60 + seconds
+    const total = accSeconds - resTime
+    hours = Math.floor(total / 3600).toString()
     minutes = Math.floor(minutes % 60).toString()
-  }
-  if (seconds.length === 1) seconds = `0${seconds}`
-  if (minutes.length === 1) minutes = `0${minutes}`
-  if (hours.length === 1) hours = `0${hours}`
-  const response = new Date(new Date('2000-01-01T07:00:00') - new Date(`2000-01-01T${hours}:${minutes}:${seconds}`))
-  const total = `${hours > 6 ? '' : '-'}${response.getUTCHours()}:${response.getUTCMinutes()}:${response.getUTCSeconds()}`
-  return total
+    seconds = Math.floor(seconds % 60).toString()
+
+    const totalString = `${hours}:${minutes}:${seconds}`
+    return totalString
 }
 
-console.log(calculateTime([
-  '00:45:00',
-  '00:45:00',
-  '00:00:30',
-  '00:00:30'
-]))
+console.log(calculateTime(['00:10:00', '01:00:00', '03:30:00']))
