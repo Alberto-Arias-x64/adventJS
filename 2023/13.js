@@ -44,3 +44,4 @@ function calculateTime(deliveries = []) {
 }
 
 console.log(calculateTime(['00:10:00', '01:00:00', '03:30:00']))
+console.log(calculateTime(['00:10:00', '01:00:00', '03:30:00']))
